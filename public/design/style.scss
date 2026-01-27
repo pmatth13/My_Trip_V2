@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+@import 'variables';
+
+body {
+  background-image: linear-gradient(to top right, #a8edea 31%, #f2e9a6 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// Navbar personnalisée
+.navbar {
+  .nav-link {
+    color: $my-blue;
+    font-weight: 700;
+    font-size: 20px;
+    font-family: $font-primary;
+
+    &:hover {
+      color: $my-red;
+    }
+  }
+
+  .navbar-brand {
+    color: $my-blue;
+  }
+}

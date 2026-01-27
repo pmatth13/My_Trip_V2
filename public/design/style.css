@@ -1,0 +1,20 @@
+body {
+  background-image: linear-gradient(to top right, #a8edea 31%, #f2e9a6 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar .nav-link {
+  color: #638a9e;
+  font-weight: 700;
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+}
+.navbar .nav-link:hover {
+  color: #f5576c;
+}
+.navbar .navbar-brand {
+  color: #638a9e;
+}/*# sourceMappingURL=style.css.map */
