@@ -17,4 +17,69 @@ body {
 }
 .navbar .navbar-brand {
   color: #638a9e;
+}
+.navbar .dropdown-menu {
+  background-color: #f2e9a6;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+}
+.navbar .dropdown-menu .dropdown-item {
+  color: #638a9e;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: #638a9e;
+  color: white;
+}
+
+.profile-section .profile-image-container {
+  display: inline-block;
+}
+.profile-section .profile-image {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  border: 5px solid #638a9e;
+  -o-object-fit: cover;
+     object-fit: cover;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+.profile-section .profile-image:hover {
+  transform: scale(1.05);
+}
+.profile-section h1 {
+  color: #2c3e50;
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+.profile-section .lead {
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+.country-title h1 {
+  color: #2c3e50;
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+.country-hero .hero-image {
+  border: 5px solid #638a9e;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+.country-hero .hero-image:hover {
+  transform: scale(1.05);
+}
+
+.lead {
+  font-size: 1.4rem;
+  line-height: 1.5;
 }/*# sourceMappingURL=style.css.map */

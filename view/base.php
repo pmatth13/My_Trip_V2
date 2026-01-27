@@ -87,7 +87,7 @@
 
     <!-- Contenu de la page -->
      <main>
-        <? /*php require $viewFile;*/ ?>
+        <?php require $viewFile; ?>
      </main> 
 
      <!-- Footer -->
