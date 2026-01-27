@@ -9,3 +9,6 @@
     - ajout des controller 
     - ajout au routeur 
 7. Design de chaque destinationView
+8. Design de contact 
+9. Création de errorView.php
+10. Front end terminé pour le moment / Mise en plage de la base de donnée pour attaquer le backend

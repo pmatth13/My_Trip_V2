@@ -10,6 +10,10 @@ body {
   flex-direction: column;
 }
 
+main {
+  margin-top: 70px;  // Espace entre navbar et contenu
+}
+
 // Navbar personnalisée
 .navbar {
   .nav-link {
@@ -106,7 +110,58 @@ body {
 }
 
 .lead {
-
     font-size: 1.4rem;
     line-height: 1.5;
+}
+
+// Page Contact
+
+.contact-section {
+    .contact-title {
+        color: #2c3e50;
+        font-weight: bold;
+        font-size: 2.5rem;
+    }
+
+    .contact-list {
+        list-style: none;
+        padding: 0;
+
+        .contact-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px 30px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            }
+
+            i {
+                font-size: 1.8rem;
+                color: $my-blue;
+                width: 40px;
+            }
+
+            a {
+                color: $my-blue;
+                font-family: $font-primary;
+                font-weight: 500;
+                font-size: 1.2rem;
+                text-decoration: none;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: $my-red;
+                }
+            }
+        }
+    }
 }
