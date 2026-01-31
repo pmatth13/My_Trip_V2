@@ -22,6 +22,15 @@ main {
 .navbar .navbar-brand {
   color: #638a9e;
 }
+.navbar .navbar-text {
+  color: #638a9e;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+.navbar .navbar-text strong {
+  color: #f5576c;
+  font-weight: 700;
+}
 .navbar .dropdown-menu {
   background-color: #f2e9a6;
   border: none;
@@ -127,5 +136,53 @@ main {
   transition: color 0.3s ease;
 }
 .contact-section .contact-list .contact-item a:hover {
+  color: #f5576c;
+}
+
+.auth-section .auth-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.auth-section .auth-title {
+  color: #2c3e50;
+  font-weight: bold;
+  font-size: 2rem;
+}
+.auth-section .form-label {
+  color: #638a9e;
+  font-weight: 500;
+}
+.auth-section .form-control {
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  transition: border-color 0.3s ease;
+}
+.auth-section .form-control:focus {
+  border-color: #638a9e;
+  box-shadow: 0 0 0 3px rgba(99, 138, 158, 0.2);
+}
+.auth-section .btn-primary {
+  background-color: #638a9e;
+  border: none;
+  padding: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+.auth-section .btn-primary:hover {
+  background-color: rgb(78.9802371542, 110.7351778656, 127.0197628458);
+}
+.auth-section p {
+  color: #666;
+}
+.auth-section p a {
+  color: #638a9e;
+  font-weight: 500;
+  text-decoration: none;
+}
+.auth-section p a:hover {
   color: #f5576c;
 }/*# sourceMappingURL=style.css.map */

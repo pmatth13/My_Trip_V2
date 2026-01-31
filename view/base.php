@@ -59,16 +59,16 @@
 
             <!-- Partie 4: Inscription/Connexion/Deconnexion -->
                 <ul class="navbar-nav">
-                    <?php if (isset($_SESSION['pseudo'])): //Contrôle de la connexion ?> 
+                    <?php if (isset($_SESSION['pseudo'])): //Contrôle de la connexion ?>
 
                     <!-- option 1: User connecté -->
-                        <li class="nav-item">
-                            <span class="navbar-text me-3">
-                                Bonjour <strong><?php echo htmlspecialchars($_SESSION['pseudo']); ?></strong>
+                        <li class="nav-item d-flex align-items-center">
+                            <span class="nav-link user-greeting">
+                                <i class="fa-solid fa-user"></i> <strong><?php echo htmlspecialchars($_SESSION['pseudo']); ?></strong>
                             </span>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-btn" href="index.php?action=logout">Deconnexion</a>
+                            <a class="nav-link" href="index.php?action=logout">Déconnexion</a>
                         </li>
 
                     <?php else: ?>

@@ -12,3 +12,10 @@
 8. Design de contact 
 9. Création de errorView.php
 10. Front end terminé pour le moment / Mise en plage de la base de donnée pour attaquer le backend
+11. Création de la bdd avec 3 tables: users, articles, comments
+12. Création de Manager.php
+13. Création de UserManager.php
+    -function register et login 
+14. Création des controlleur pour faire le lien 
+15. Ajout des routeur dans l'index
+16. Création de loginView et registerView

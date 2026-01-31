@@ -31,6 +31,22 @@ main {
     color: $my-blue;
   }
 
+  // Style pour le pseudo connecté
+  .user-greeting {
+    color: $my-blue;
+    font-family: $font-primary;
+    font-weight: 500;
+    font-size: 20px;
+
+    i {
+      margin-right: 5px;
+    }
+
+    strong {
+      color: $my-red;
+    }
+  }
+
   // Menu dropdown
   .dropdown-menu {
     background-color: $my-yellow;
@@ -161,6 +177,67 @@ main {
                 &:hover {
                     color: $my-red;
                 }
+            }
+        }
+    }
+}
+
+// Pages Connexion & Inscription
+
+.auth-section {
+    .auth-card {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .auth-title {
+        color: #2c3e50;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+
+    .form-label {
+        color: $my-blue;
+        font-weight: 500;
+    }
+
+    .form-control {
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 12px;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+            border-color: $my-blue;
+            box-shadow: 0 0 0 3px rgba(99, 138, 158, 0.2);
+        }
+    }
+
+    .btn-primary {
+        background-color: $my-blue;
+        border: none;
+        padding: 12px;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: darken($my-blue, 10%);
+        }
+    }
+
+    p {
+        color: #666;
+
+        a {
+            color: $my-blue;
+            font-weight: 500;
+            text-decoration: none;
+
+            &:hover {
+                color: $my-red;
             }
         }
     }

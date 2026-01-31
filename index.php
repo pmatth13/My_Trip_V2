@@ -42,6 +42,19 @@
         case 'contact':
             contactController();
             break;
+
+        case 'register':
+            registerUserController();
+            break;
+
+        case 'login':
+            loginUserController();
+            break;
+
+        case 'logout':
+            logoutController();
+            break;
+
         
         default :
             errorController();
