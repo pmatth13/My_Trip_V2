@@ -22,14 +22,17 @@ main {
 .navbar .navbar-brand {
   color: #638a9e;
 }
-.navbar .navbar-text {
+.navbar .user-greeting {
   color: #638a9e;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
+  font-size: 20px;
 }
-.navbar .navbar-text strong {
+.navbar .user-greeting i {
+  margin-right: 5px;
+}
+.navbar .user-greeting strong {
   color: #f5576c;
-  font-weight: 700;
 }
 .navbar .dropdown-menu {
   background-color: #f2e9a6;
@@ -185,4 +188,40 @@ main {
 }
 .auth-section p a:hover {
   color: #f5576c;
+}
+
+.article-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.article-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+.article-card .card-img-top {
+  border-radius: 15px 15px 0 0;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.article-card .card-title {
+  color: #638a9e;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+.article-card .card-text {
+  color: #666;
+}
+.article-card .btn-primary {
+  background-color: #638a9e;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+.article-card .btn-primary:hover {
+  background-color: rgb(78.9802371542, 110.7351778656, 127.0197628458);
 }/*# sourceMappingURL=style.css.map */

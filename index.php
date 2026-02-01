@@ -54,7 +54,22 @@
         case 'logout':
             logoutController();
             break;
+        
+        case 'createArticle':
+            createArticleController();
+            break;
 
+        case 'article':
+        articleController();
+        break;
+
+        case 'deleteArticle':
+            deleteArticleController();
+            break;
+        
+        case 'editArticle':
+        editArticleController();
+        break;
         
         default :
             errorController();

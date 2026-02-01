@@ -242,3 +242,46 @@ main {
         }
     }
 }
+
+// Cards Articles
+
+.article-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-img-top {
+        border-radius: 15px 15px 0 0;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card-title {
+        color: $my-blue;
+        font-family: $font-primary;
+        font-weight: 700;
+    }
+
+    .card-text {
+        color: #666;
+    }
+
+    .btn-primary {
+        background-color: $my-blue;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: darken($my-blue, 10%);
+        }
+    }
+}

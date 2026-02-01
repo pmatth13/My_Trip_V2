@@ -19,3 +19,17 @@
 14. Création des controlleur pour faire le lien 
 15. Ajout des routeur dans l'index
 16. Création de loginView et registerView
+17. Création de ArticleManager.php
+    - function create ARticle
+    - getArticleByDestination
+    - getArticleById
+18. Modification du controleur pour appeler l'article
+19. Modification de la View pour insereer la card avec l'article dynamiquement
+20. Créer le formulaire de création d'article
+21. Création createArticleView.php avec intégration de TINY MCE
+22. Création de la page de détails de l'article
+23. Création de articleView.php
+24. Création de deleteController et editController
+25. Finalisation du CRUD 
+26. Duplication pour chaque destination
+
