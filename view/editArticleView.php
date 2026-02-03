@@ -6,7 +6,7 @@
             
             <p class="alert alert-info">Article pour la destination : <strong><?= htmlspecialchars($article['destination']) ?></strong></p>
 
-            <form method="POST" action="index.php?action=editArticle">
+            <form method="POST" action="index.php?action=editArticle" enctype="multipart/form-data">
 
                 <!-- Champ caché id -->
                 <input type="hidden" name="id" value="<?= $article['id'] ?>">
@@ -20,10 +20,25 @@
                     <input type="text" class="form-control" id="title" name="title" value="<?= htmlspecialchars($article['title']) ?>" required>
                 </div>
 
-                <!-- Image URL -->
+                <?php if(isset($error)): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?= $error ?>
+                    </div>
+                <?php endif; ?>
+
+                <!-- Image actuelle -->
+                <?php if (!empty($article['image_url'])): ?>
+                    <div class="mb-3">
+                        <label class="form-label">Image actuelle :</label><br>
+                        <img src="<?= htmlspecialchars($article['image_url']) ?>" alt="Image actuelle" class="img-thumbnail" style="max-width: 300px;">
+                    </div>
+                <?php endif; ?>
+
+                <!-- Nouvelle image -->
                 <div class="mb-3">
-                    <label for="image_url" class="form-label">URL de l'image (optionnel) :</label>
-                    <input type="text" class="form-control" id="image_url" name="image_url" value="<?= htmlspecialchars($article['image_url'] ?? '') ?>" placeholder="https://exemple.com/image.jpg">
+                    <label for="image" class="form-label">Changer l'image (optionnel) :</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/jpeg,image/png,image/gif,image/webp">
+                    <small class="text-muted">Formats acceptés : JPG, PNG, GIF, WEBP (max 5 Mo). Laissez vide pour garder l'image actuelle.</small>
                 </div>
 
                 <!-- Contenu -->

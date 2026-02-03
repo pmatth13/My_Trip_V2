@@ -32,4 +32,9 @@
 24. Création de deleteController et editController
 25. Finalisation du CRUD 
 26. Duplication pour chaque destination
+27. Création d'upload d'image réel quand j'ecris un article
+    - création de la function dans le controller
+    - modification de createArticleController()
+    - modification editController();
+    
 

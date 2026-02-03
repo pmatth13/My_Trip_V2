@@ -6,7 +6,7 @@
             
             <p class="alert alert-info">Article pour la destination : <strong><?= htmlspecialchars($destination) ?></strong></p>
 
-            <form method="POST" action="index.php?action=createArticle&destination=<?= htmlspecialchars($destination) ?>">
+            <form method="POST" action="index.php?action=createArticle&destination=<?= htmlspecialchars($destination) ?>" enctype="multipart/form-data">
 
                 <!-- Champ caché destination -->
                 <input type="hidden" name="destination" value="<?= htmlspecialchars($destination) ?>">
@@ -17,10 +17,17 @@
                     <input type="text" class="form-control" id="title" name="title" required>
                 </div>
 
-                <!-- Image URL -->
+                <?php if(isset($error)): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?= $error ?>
+                    </div>
+                <?php endif; ?>
+
+               <!-- Image -->
                 <div class="mb-3">
-                    <label for="image_url" class="form-label">URL de l'image :</label>
-                    <input type="text" class="form-control" id="image_url" name="image_url" placeholder="https://exemple.com/image.jpg">
+                    <label for="image" class="form-label">Image de couverture (optionnel) :</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/jpeg,image/png,image/gif,image/webp">
+                    <small class="text-muted">Formats acceptés : JPG, PNG, GIF, WEBP (max 5 Mo)</small>
                 </div>
 
                 <!-- Contenu -->

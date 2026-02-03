@@ -158,8 +158,23 @@
             $title = $_POST['title'];
             $content = $_POST['content'];
             $destination = $_POST['destination'];
-            $image_url = !empty($_POST['image_url']) ? $_POST['image_url'] : null;  // permet d'enregister null dans la bdd si pas d'image
             $author_id = $_SESSION['user_id'];
+
+            // Gestion de l'upload de l'image
+            $image_url = null;
+            if (isset($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
+                $image_url = uploadImage($_FILES['image']);
+
+                if ($image_url === false) {
+                    // Erreur d'upload
+                    $error = "Erreur lors de l'upload de l'image. Verifiez le format (JPG, PNG, GIF, WEBP) et la taille (Max 5mo).";
+                    $destination = $_POST['destination'];
+                    $viewFile = 'view/createArticleView.php';
+                    require 'view/base.php';
+                    return;
+                }
+            }
+           
 
             // Gestion de l'upload de l'image plus tard
 
@@ -254,44 +269,75 @@
         if (!empty($_POST)) {
             
             // Récupérer les données du formulaire
-            $id = $_POST['id'];
-            $title = $_POST['title'];
-            $content = $_POST['content'];
+            $id          = $_POST['id'];
+            $title       = $_POST['title'];
+            $content     = $_POST['content'];
             $destination = $_POST['destination'];
-            $image_url = !empty($_POST['image_url']) ? $_POST['image_url'] : null;
 
-            // Modifier l'article
+            // Récupérer l'article actuel pour garder l'ancienne image si pas de nouvelle upload
             $articleManager = new ArticleManager();
-            $articleManager->editArticle($id, $title, $content, $destination, $image_url);
+            $currentArticle = $articleManager->getArticleById($id);
+            $image_url = $currentArticle['image_url']; // Garde l'ancienne image par défaut
 
-            // Rediriger vers l'article modifié
-            header("Location: index.php?action=article&id=" . $id);
-            exit;
-
-        } else {
-            
-            // Affichage du formulaire : récupérer l'article à modifier
-            if (isset($_GET['id']) && !empty($_GET['id'])) {
-                $id = $_GET['id'];
-
-                // Récupérer l'article
-                $articleManager = new ArticleManager();
-                $article = $articleManager->getArticleById($id);
-
-                // Vérifier que l'article existe
-                if (!$article) {
-                    errorController();
+            // Gestion de l'upload d'une nouvelle image
+            if (isset($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
+                $newImage = uploadImage($_FILES['image']);
+                
+                if ($newImage === false) {
+                    // Erreur d'upload
+                    $error = "Erreur lors de l'upload de l'image. Vérifiez le format (JPG, PNG, GIF, WEBP) et la taille (max 5 Mo).";
+                    $article = $currentArticle; // Garder les données pour pré-remplir le formulaire
+                    $viewFile = 'view/editArticleView.php';
+                    require 'view/base.php';
                     return;
                 }
-
-                // Afficher le formulaire
-                $viewFile = 'view/editArticleView.php';
-                require 'view/base.php';
-
-            } else {
-                // Pas d'ID -> erreur
-                errorController();
-                return;
+                
+                // Nouvelle image uploadée avec succès
+                $image_url = $newImage;
             }
         }
+    }
+
+// ------------------------------------------------------------Fonction d'upload d'image
+
+    function uploadImage($file) {
+
+        // Vérifier qu'un fichier a été uploadé
+        if (!isset($file) || $file['error'] === UPLOAD_ERR_NO_FILE) {
+            return null; // Pas de fichier = pas d'erreur, juste null
+        }
+
+        // Vérifier s'il y a une erreur d'upload
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            return false;
+        }
+
+        // Taille maximale : 5 Mo
+        $maxSize = 5 * 1024 * 1024; // 5 Mo en octets
+        if ($file['size'] > $maxSize) {
+            return false;
+        }
+
+        // Types MIME autorisés
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        $finfo = finfo_open(FILEINFO_MIME_TYPE); // Sécurité pour analyser le contenu de l'upload afin d'éviter le contenu malveillant $finfo lit les données binaires
+        $mimeType = finfo_file($finfo, $file['tmp_name']); // Analyse le fichier temporaire et donne le VRAI type MIME
+
+        if (!in_array($mimeType, $allowedTypes)) { // Si le VRAI type n'est pas dans la liste alors REFUS
+            return false;
+        }
+
+        // Générer un nom unique
+        $extension = pathinfo($file['name'], PATHINFO_EXTENSION); // Permet de garder la même extension
+        $filename = uniqid('img_', true) . '.' . $extension; // Crée un nom unique sans doublon via le timestamp
+
+        // Chemin de destination
+        $destination = 'public/uploads/' . $filename;
+
+        // Déplacer le fichier
+        if (move_uploaded_file($file['tmp_name'], $destination)) { // Permet la migration du dossier temporaire au dossier definitif
+            return $destination; // Retourne le chemin relatif (sans / au début pour XAMPP)
+        }
+
+        return false;
     }
