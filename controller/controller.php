@@ -3,6 +3,7 @@
     require_once 'model/Manager.php';
     require_once 'model/UserManager.php';
     require_once 'model/ArticleManager.php';
+    require_once 'model/CommentManager.php';
 
     // Affichage des différentes vue avec les différentes fonctions
 
@@ -212,6 +213,10 @@
                 return;
             }
 
+            // Récupérer les commentaires de l'article
+            $commentManager = new CommentManager();
+            $comments = $commentManager->getCommentsByArticle($id);
+
             // Afficher la vue
             $viewFile = 'view/articleView.php';
             require 'view/base.php';
@@ -340,4 +345,72 @@
         }
 
         return false;
+    }
+
+    //------------------------------------------------ Commentaire
+
+    function addCommentController() {
+    
+        // Vérifier que l'utilisateur est connecté
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: index.php?action=login");
+            exit;
+        }
+
+        // Vérifier qu'on a bien des données POST
+        if (!empty($_POST)) {
+            
+            // Récupérer les données
+            $content = $_POST['content'];
+            $article_id = $_POST['article_id'];
+            $author_id = $_SESSION['user_id'];
+
+            // Créer le commentaire
+            $commentManager = new CommentManager();
+            $commentManager->createComment($content, $article_id, $author_id);
+
+            // Rediriger vers l'article
+            header("Location: index.php?action=article&id=" . $article_id);
+            exit;
+        }
+    } 
+
+    function deleteCommentController() {
+    
+        // Vérifier que l'utilisateur est connecté
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: index.php?action=login");
+            exit;
+        }
+
+        // Récupérer l'id du commentaire et de l'article
+        if (isset($_GET['id']) && isset($_GET['article_id'])) {
+            $comment_id = $_GET['id'];
+            $article_id = $_GET['article_id'];
+
+            // Vérifier les droits : admin OU auteur du commentaire
+            $commentManager = new CommentManager();
+            $comments = $commentManager->getCommentsByArticle($article_id);
+            
+            // Chercher le commentaire pour vérifier l'auteur
+            $canDelete = false;
+            foreach ($comments as $comment) {
+                if ($comment['id'] == $comment_id) {
+                    // Admin OU auteur du commentaire
+                    if ($_SESSION['user_id'] == 1 || $_SESSION['user_id'] == $comment['author_id']) {
+                        $canDelete = true;
+                    }
+                    break;
+                }
+            }
+
+            // Supprimer si autorisé
+            if ($canDelete) {
+                $commentManager->deleteComment($comment_id);
+            }
+
+            // Rediriger vers l'article
+            header("Location: index.php?action=article&id=" . $article_id);
+            exit;
+        }
     }

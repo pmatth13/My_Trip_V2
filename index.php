@@ -70,6 +70,14 @@
         case 'editArticle':
         editArticleController();
         break;
+
+        case 'addComment':
+            addCommentController();
+            break;
+
+        case 'deleteComment':
+            deleteCommentController();
+            break;
         
         default :
             errorController();
